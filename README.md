@@ -26,3 +26,16 @@ should launch the webstie to localhost:3000
 now the firebase side will have to be set up
 all of the javascript that needs changed is in index.html file for the site.
 */
+
+
+//after emails are in the database heres how to grab them
+
+//in this file grabEmailsFromDatabase.js change line 8 to match the path where you downloaded your service key
+// and change line 12 to match your firebase site name
+
+//from command line run
+$ npm install firebase-admin --save
+// now run
+$ node grabEmailsFromDatabase.js
+
+//this will create a .json and a txt file with the emails from your website
