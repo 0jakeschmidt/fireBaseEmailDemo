@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Firebase Demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/ionicons.min.css">
+    
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    
+
+    
+    <div class="hero-wrap js-fullheight" style="background-image: url('images/bg_1.png');" data-stellar-background-ratio="0.5">
+      
+      <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
+          <div class="col-md-12 ftco-animate">
+          	<h2 class="subheading">Hello! Welcome to</h2>
+          	<h1 class="mb-4 mb-md-0">Firebase Email Demo</h1>
+          	<div class="row">
+          		<div class="col-md-7">
+          			<div class="text">
+	          			<p>This site is a framework to show the email database below. Emails can be added to a database from a static website using firebase. The database can then be queried used a node.js script.</p>
+	          			<div class="mouse">
+										<a href="#" class="mouse-icon">
+											<div class="mouse-wheel"><span class="ion-ios-arrow-round-down"></span></div>
+										</a>
+									</div>
+								</div>
+          		</div>
+          	</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+   	<section class="ftco-section">
+   		<div class="container">
+   			<div class="row">
+   				<div class="col-md-12">
+
+   				
+
+   					<div class="section promoSection"><div class="promoRow">
+						<div class="alert alert-success" role="alert" id="alert">
+					<p id="txt">
+					  <strong>Success!</strong> You have been signed up successfully!
+					  </p>
+					</div>
+					<div class="alert alert-success" role="alert" id="wrg">
+					<p id="txt">
+					  <strong>Sorry!</strong> You have entered an invalid E-mail.
+					  </p>
+					</div>
+					  <hgroup>
+					  <h1>Subscribe</h1>
+					
+					</hgroup>
+					<form id= "frm1">
+					  <div class="group">
+						<input type="email" name="email_add"><span class="highlight"></span><span class="bar"></span>
+						<label>Email</label>
+					  </div>
+					  <button value="submit" type="button" class="button buttonBlue" value= "submit_button" id="sub" onclick="saveToFirebase()">Subscribe
+						<div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+					  </button>
+					</form>
+					
+					</div>
+					</div>
+					
+					
+   				</div>
+   			</div>
+
+   		</div>
+   	</section>
+
+  
+    
+  
+
+
+
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/jquery.waypoints.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/jquery.animateNumber.min.js"></script>
+  <script src="js/scrollax.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="js/google-map.js"></script>
+  <script src="js/main.js"></script>
+	
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+<!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+
+<!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-analytics.js"></script>
+
+<!-- Add Firebase products that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
+
+<script>
+// Your web app's Firebase configuration
+var firebaseConfig = {
+    apiKey: "AIzaSyCwocS0pDgs56G_6-aWIpQ-xwux51jre4Q",
+    authDomain: "emailexample-a624c.firebaseapp.com",
+    databaseURL: "https://emailexample-a624c.firebaseio.com",
+    projectId: "emailexample-a624c",
+    storageBucket: "emailexample-a624c.appspot.com",
+    messagingSenderId: "611424270746",
+    appId: "1:611424270746:web:ab1385305615e3feec2223",
+    measurementId: "G-B6SXK9X3J5"
+  };
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
+</script>
+<script type="text/javascript">
+const database = firebase.database();
+
+function saveToFirebase() {
+const email = document.getElementById('frm1').elements[0].value;
+
+var emailObject = {
+email: email
+};
+
+if(ValidateEmail(email)){
+database.ref('emails').push().set(emailObject)
+.then(function(snapshot) {
+success(); // some success method
+}, function(error) {
+console.log('error' + error);
+error(); // some error method
+});
+document.getElementById('frm1').reset();
+}
+
+}
+function ValidateEmail(mail) 
+{
+if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail))
+{
+pass();
+return (true)
+}
+//alert("You have entered an invalid email address!");
+fail();
+return (false)
+}
+function fail(){
+
+$('#wrg').finish().show().delay(1000).fadeOut(6000);
+
+}
+function pass(){
+
+$('#alert').finish().show().delay(1000).fadeOut(6000);
+
+}
+
+</script>
+
+  </body>
+</html>
